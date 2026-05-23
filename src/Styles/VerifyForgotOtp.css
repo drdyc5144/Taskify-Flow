@@ -1,0 +1,303 @@
+.verify_forgot_container {
+  width: 100%;
+  min-height: 100vh;
+  background: #f8f3ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.verify_forgot_holder {
+  width: 35%;
+  max-width: 450px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  padding: 30px 25px;
+  gap: 15px;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.08);
+  overflow-y: auto;
+  max-height: 90vh;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 10px;
+  }
+}
+
+.logo_container {
+  text-align: center;
+  margin-bottom: 5px;
+  flex-shrink: 0;
+}
+
+.taskify_logo {
+  max-width: 160px;
+  width: 100%;
+  height: auto;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.taskify_logo:hover {
+  transform: scale(1.05);
+}
+
+.Top_text {
+  text-align: center;
+  flex-shrink: 0;
+
+  h1 {
+    margin-bottom: 8px;
+    color: #2d3748;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  p {
+    color: #718096;
+    font-size: 13px;
+    margin: 5px 0;
+  }
+}
+
+.verify_email {
+  display: inline-block;
+  color: #667eea;
+  font-weight: 600;
+  margin-top: 5px;
+  font-size: 13px;
+}
+
+.otp_hint {
+  font-size: 12px;
+  color: #999;
+  margin-top: 8px;
+}
+
+.otp_expiry {
+  font-size: 12px;
+  color: #e74c3c;
+  background: #fef0ef;
+  padding: 6px 12px;
+  border-radius: 6px;
+  margin-top: 8px;
+  display: inline-block;
+  width: auto;
+  text-align: center;
+}
+
+.otp_inputs {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 15px 0;
+}
+
+.otp_input {
+  width: 55px;
+  height: 55px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  background: white;
+  transition: all 0.3s ease;
+  font-family: monospace;
+
+  &:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    transform: scale(1.02);
+  }
+
+  &.filled {
+    border-color: #667eea;
+    background: #f8f9ff;
+  }
+
+  &:disabled {
+    background: #f5f5f5;
+    cursor: not-allowed;
+  }
+}
+
+.resend_container {
+  text-align: center;
+  margin: 5px 0;
+}
+
+.resend_btn {
+  background: none;
+  border: none;
+  color: #667eea;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+
+  &:hover:not(:disabled) {
+    background: #f0f0ff;
+    color: #764ba2;
+    text-decoration: underline;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.btnholder {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+  flex-shrink: 0;
+}
+
+.verify_btn {
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}
+
+.back_to_login {
+  text-align: center;
+  color: #667eea;
+  cursor: pointer;
+  font-size: 13px;
+  transition: color 0.3s ease;
+  margin: 0;
+
+  &:hover {
+    color: #764ba2;
+    text-decoration: underline;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .verify_forgot_holder {
+    width: 50%;
+    padding: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .verify_forget_container {
+    padding: 15px;
+  }
+
+  .verify_forget_holder {
+    width: 90%;
+    padding: 25px 20px;
+    gap: 12px;
+  }
+
+  .taskify_logo {
+    max-width: 140px;
+  }
+
+  .Top_text h1 {
+    font-size: 22px;
+  }
+
+  .Top_text p {
+    font-size: 12px;
+  }
+
+  .otp_hint {
+    font-size: 11px;
+  }
+
+  .otp_expiry {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+
+  .otp_input {
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+  }
+
+  .otp_inputs {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .verify_forgot_holder {
+    width: 95%;
+    padding: 20px 15px;
+    gap: 12px;
+  }
+
+  .taskify_logo {
+    max-width: 120px;
+  }
+
+  .Top_text h1 {
+    font-size: 20px;
+  }
+
+  .Top_text p {
+    font-size: 12px;
+  }
+
+  .otp_hint {
+    font-size: 10px;
+  }
+
+  .otp_expiry {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+
+  .verify_btn {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .otp_input {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .otp_inputs {
+    gap: 6px;
+  }
+}

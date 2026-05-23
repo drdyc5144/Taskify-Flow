@@ -1,0 +1,240 @@
+.error_container {
+  width: 100%;
+  min-height: 100vh;
+  background: #f8f3ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.error_holder {
+  width: 35%;
+  max-width: 500px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 16px;
+  padding: 40px 35px;
+  gap: 20px;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Logo Styling */
+.logo_container {
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.taskify_logo {
+  max-width: 160px;
+  width: 100%;
+  height: auto;
+  display: inline-block;
+}
+
+/* Error Icon */
+.error_icon {
+  font-size: 80px;
+  color: #e74c3c;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  75% {
+    transform: translateX(10px);
+  }
+}
+
+/* Error Code */
+.error_code {
+  margin-top: -10px;
+}
+
+.error_number {
+  font-size: 72px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 4px;
+}
+
+/* Error Text */
+.error_text {
+  text-align: center;
+
+  h1 {
+    color: #2d3748;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: #718096;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+  }
+}
+
+/* Action Buttons */
+.error_actions {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.error_btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+
+  svg {
+    font-size: 16px;
+  }
+
+  &.primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+  }
+
+  &.secondary {
+    background: white;
+    color: #667eea;
+    border: 1px solid #e0e0e0;
+
+    &:hover {
+      background: #f8f3ff;
+      border-color: #667eea;
+      transform: translateY(-2px);
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+/* Help Text */
+.error_help {
+  color: #718096;
+  font-size: 13px;
+  margin-top: 10px;
+
+  span {
+    color: #667eea;
+    cursor: pointer;
+    font-weight: 600;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #764ba2;
+      text-decoration: underline;
+    }
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .error_holder {
+    width: 90%;
+    padding: 30px 25px;
+    gap: 18px;
+  }
+
+  .taskify_logo {
+    max-width: 140px;
+  }
+
+  .error_icon {
+    font-size: 60px;
+  }
+
+  .error_number {
+    font-size: 56px;
+  }
+
+  .error_text h1 {
+    font-size: 22px;
+  }
+
+  .error_text p {
+    font-size: 13px;
+  }
+
+  .error_actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .error_btn {
+    padding: 10px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .error_holder {
+    width: 95%;
+    padding: 25px 20px;
+    gap: 15px;
+  }
+
+  .taskify_logo {
+    max-width: 120px;
+  }
+
+  .error_icon {
+    font-size: 50px;
+  }
+
+  .error_number {
+    font-size: 48px;
+  }
+
+  .error_text h1 {
+    font-size: 20px;
+  }
+
+  .error_text p {
+    font-size: 12px;
+  }
+}

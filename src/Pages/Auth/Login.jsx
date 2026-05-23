@@ -73,23 +73,32 @@ const Login = () => {
     }
     try {
       setIsLoading(true);
-      const response = await axios.post(
-        `${baseURL}/users/login`,
-        {
-          email: "",
-          password: "",
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${Token}`,
-          },
-        },
-      );
+      const response = await axios.post(`${baseURL}/users/login`, {
+        email: loginUser.email,
+        password: loginUser.password,
+      });
+
+      localStorage.setItem("Token", response.data.token);
+
       console.log(response);
       setIsLoading(false);
+      toast.success(response.data.message);
+
+      setTimeout(() => {
+        nav("/dashboard");
+      }, 2000);
     } catch (error) {
       console.log(error);
       setIsLoading(false);
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("An error occurred during login. Please try again.");
+      }
     }
   };
 
@@ -173,7 +182,7 @@ const Login = () => {
             <p>Remember me</p>
           </div>
           <div className="forget">
-            <p onClick={() => nav("/forgetPassword")}>Forget Password?</p>
+            <p onClick={() => nav("/forgot-password")}>Forget Password?</p>
           </div>
         </div>
 
@@ -187,7 +196,7 @@ const Login = () => {
 
           <p>
             Don't have an account?
-            <span onClick={() => nav("/")}> Sign Up here</span>
+            <span onClick={() => nav("/signup")}> Sign Up here</span>
           </p>
         </div>
       </form>

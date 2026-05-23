@@ -137,8 +137,8 @@ const VerifyUser = () => {
       localStorage.removeItem("userEmail");
       console.log("otp response", response);
       setTimeout(() => {
-        nav("/login");
-      }, 1000);
+        nav("/");
+      }, 3000);
     } catch (error) {
       console.log("otp error", error);
       toast.error(error?.response?.data?.message || "Verification failed");

@@ -114,7 +114,7 @@ const SignUp = () => {
       toast.success(response?.data?.message);
       setIsLoading(false);
       setTimeout(() => {
-        nav("/verify");
+        nav("/verify-user");
       }, 3000);
       console.log("signup good response", response);
       setUserDetails({
@@ -234,7 +234,7 @@ const SignUp = () => {
 
           <p>
             Already have an account?
-            <span onClick={() => nav("/login")}> Login here</span>
+            <span onClick={() => nav("/")}> Login here</span>
           </p>
         </div>
       </form>
