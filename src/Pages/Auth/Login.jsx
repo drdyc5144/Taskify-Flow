@@ -71,25 +71,44 @@ const Login = () => {
       });
       return;
     }
+
     try {
       setIsLoading(true);
+
       const response = await axios.post(`${baseURL}/users/login`, {
         email: loginUser.email,
         password: loginUser.password,
       });
 
-      localStorage.setItem("Token", response.data.token);
+      console.log("Login response:", response.data);
 
-      console.log(response);
-      setIsLoading(false);
-      toast.success(response.data.message);
+      const token = response.data.token || response.data.data?.token;
+      localStorage.setItem("Token", token);
 
+      // 2. Fetch user profile to get full name
+      const profileResponse = await axios.get(`${baseURL}/users/profile`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      console.log("Profile response:", profileResponse.data);
+
+      // Get user data from profile response
+      const userData = profileResponse.data.data || profileResponse.data;
+
+      // Save user info to localStorage
+      const userInfo = {
+        fullName: userData.fullName || "",
+        email: userData.email || loginUser.email,
+        _id: userData._id || "",
+      };
+      localStorage.setItem("user", JSON.stringify(userInfo));
+
+      toast.success(response.data.message || "Login successful!");
       setTimeout(() => {
         nav("/dashboard");
       }, 2000);
     } catch (error) {
-      console.log(error);
-      setIsLoading(false);
+      console.log("Login error:", error);
       if (
         error.response &&
         error.response.data &&
@@ -99,6 +118,8 @@ const Login = () => {
       } else {
         toast.error("An error occurred during login. Please try again.");
       }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -189,6 +210,7 @@ const Login = () => {
         <div className="btnholder">
           <button
             type="submit"
+            disabled={isLoading}
             style={{ cursor: isLoading ? "not-allowed" : "pointer" }}
           >
             {isLoading ? "Logging in..." : "Login"}

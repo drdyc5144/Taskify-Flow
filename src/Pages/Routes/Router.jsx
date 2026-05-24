@@ -7,6 +7,9 @@ import ForgotPassword from "../Auth/ForgotPassword";
 import VerifyForgotOtp from "../Auth/VerifyForgotOtp";
 import ResetPassword from "../Auth/ResetPassword";
 import Dashboard from "../Dashboard/Dashboard";
+import MyTasks from "../Dashboard/MyTasks";
+import Analytics from "../Dashboard/Analytics";
+import Profile from "../Dashboard/Profile";
 
 export const Element = createBrowserRouter([
   {
@@ -40,5 +43,17 @@ export const Element = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
+  },
+  {
+    path: "/dashboard/tasks",
+    element: <MyTasks />,
+  },
+  {
+    path: "/dashboard/analytics",
+    element: <Analytics />,
+  },
+  {
+    path: "/dashboard/profile",
+    element: <Profile />,
   },
 ]);

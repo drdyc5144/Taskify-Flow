@@ -1,0 +1,133 @@
+.dashboard_header {
+  background: white;
+  padding: 15px 25px;
+  border-radius: 120px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.mobile_menu_btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  margin-right: 15px;
+}
+
+.header_left h2 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.header_left p {
+  font-size: 13px;
+  color: #999;
+}
+
+.header_right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.notification_btn {
+  position: relative;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.notification_btn:hover {
+  background: #f0f0ff;
+  color: #667eea;
+}
+
+.notification_badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #e74c3c;
+  color: white;
+  font-size: 10px;
+  padding: 2px 5px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.user_avatar_small {
+  width: 35px;
+  height: 35px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.user_avatar_small:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .mobile_menu_btn {
+    display: block;
+  }
+
+  .dashboard_header {
+    padding: 12px 15px;
+  }
+
+  .header_left h2 {
+    font-size: 18px;
+  }
+
+  .header_left p {
+    font-size: 11px;
+  }
+
+  .notification_btn {
+    font-size: 20px;
+  }
+
+  .user_avatar_small {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header_left h2 {
+    font-size: 16px;
+  }
+
+  .header_left p {
+    display: none;
+  }
+
+  .header_right {
+    gap: 12px;
+  }
+}
