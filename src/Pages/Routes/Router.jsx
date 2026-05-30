@@ -7,7 +7,6 @@ import ForgotPassword from "../Auth/ForgotPassword";
 import VerifyForgotOtp from "../Auth/VerifyForgotOtp";
 import ResetPassword from "../Auth/ResetPassword";
 import Dashboard from "../Dashboard/Dashboard";
-import MyTasks from "../Dashboard/MyTasks";
 import Analytics from "../Dashboard/Analytics";
 import Profile from "../Dashboard/Profile";
 import Notifications from "../Dashboard/Notifications";
@@ -44,10 +43,6 @@ export const Element = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
-  },
-  {
-    path: "/dashboard/tasks",
-    element: <MyTasks />,
   },
   {
     path: "/dashboard/analytics",

@@ -46,7 +46,6 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 
   const menuItems = [
     { path: "/dashboard", name: "Dashboard", icon: <IoStatsChartOutline /> },
-    { path: "/dashboard/tasks", name: "My Tasks", icon: <IoListOutline /> },
     { path: "/dashboard/profile", name: "Profile", icon: <IoPersonOutline /> },
     {
       path: "/dashboard/notifications",
