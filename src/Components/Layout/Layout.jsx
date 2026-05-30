@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Sidebar from "../Sidebar";
 import Header from "../Header";
-import "../../styles/Layout.css";
+import "./Layout.css";
 
 const Layout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
