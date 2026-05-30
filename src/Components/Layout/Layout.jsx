@@ -16,8 +16,8 @@ const Layout = ({ children }) => {
   })();
 
   const user = storedUser || {
-    name: "Naanshai Daniel",
-    email: "daniel@taskify.com",
+    name: "",
+    email: "",
   };
 
   return (

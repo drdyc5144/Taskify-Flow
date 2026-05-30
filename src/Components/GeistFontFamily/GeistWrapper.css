@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+
+.geist-wrapper {
+  font-family: "Geist", sans-serif;
+  font-optical-sizing: auto;
+}
+
+.geist-wrapper h1 {
+  font-weight: 700;
+}
+
+.geist-wrapper p {
+  font-weight: 400;
+}

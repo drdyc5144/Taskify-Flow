@@ -1,4 +1,10 @@
-/* Stats Cards - 4 cards grid */
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+
+.geist-content {
+  font-family: "Geist", sans-serif;
+  font-optical-sizing: auto;
+}
+
 .stats_grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../Components/Layout/Layout";
-import "../../styles/Dashboard.css";
+import "./DashboardStyles/Dashboard.css";
 import {
   IoTimeOutline,
   IoAddOutline,
@@ -16,7 +16,10 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const Dashboard = () => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() => {
+    const savedTasks = localStorage.getItem("tasks");
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isFetching, setIsFetching] = useState(true);
@@ -51,11 +54,9 @@ const Dashboard = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      setTasks(response?.data?.data?.tasks || []);
-      localStorage.setItem(
-        "tasks",
-        JSON.stringify(response?.data?.data?.tasks || []),
-      );
+      const newTasks = response?.data?.data?.tasks || [];
+      setTasks(newTasks);
+      localStorage.setItem("tasks", JSON.stringify(newTasks));
       console.log("fetchTask task response", response);
     } catch (error) {
       console.log("fetchTask error", error);
@@ -114,12 +115,18 @@ const Dashboard = () => {
     }
   };
 
-  const handleDeleteTask = (taskId) => {
-    if (window.confirm("Are you sure you want to delete this task?")) {
-      setTasks(
-        tasks.filter((task) => task.id !== taskId && task._id !== taskId),
-      );
-      toast.success("Task deleted locally");
+  const handleDeleteTask = async (id) => {
+    try {
+      const response = await axios.delete(`${baseURL}/tasks/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log("api delete resonse", response);
+      toast.success(response.data.message || "Task deleted successfully");
+      setTasks(tasks.filter((item) => item.id !== id && item._id !== id));
+    } catch (error) {
+      console.log("api delete resonse", error);
     }
   };
 
@@ -154,7 +161,7 @@ const Dashboard = () => {
 
   return (
     <Layout>
-      <div className="dashboard_page">
+      <div className="dashboard_page geist-content">
         <div className="stats_grid">
           <div className="stat_card total">
             <div className="stat_icon">
@@ -282,7 +289,6 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Create Task Modal */}
         {showCreateModal && (
           <div
             className="modal_overlay"

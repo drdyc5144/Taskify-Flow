@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Layout from "../../Components/Layout/Layout";
-import "../../Styles/MyTasks.css";
+import "./DashboardStyles/MyTasks.css";
 import {
   IoAddOutline,
   IoCreateOutline,

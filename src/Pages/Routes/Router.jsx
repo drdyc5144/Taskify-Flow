@@ -10,6 +10,7 @@ import Dashboard from "../Dashboard/Dashboard";
 import MyTasks from "../Dashboard/MyTasks";
 import Analytics from "../Dashboard/Analytics";
 import Profile from "../Dashboard/Profile";
+import Notifications from "../Dashboard/Notifications";
 
 export const Element = createBrowserRouter([
   {
@@ -55,5 +56,9 @@ export const Element = createBrowserRouter([
   {
     path: "/dashboard/profile",
     element: <Profile />,
+  },
+  {
+    path: "/dashboard/notifications",
+    element: <Notifications />,
   },
 ]);

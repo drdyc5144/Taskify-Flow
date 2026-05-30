@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../../Components/Layout/Layout";
-import "../../Styles/Profile.css";
+import "./DashboardStyles/Profile.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 

@@ -1,3 +1,4 @@
+/* Sidebar Container */
 .sidebar {
   position: fixed;
   left: 0;
@@ -16,6 +17,7 @@
   width: 70px;
 }
 
+/* Sidebar Header */
 .sidebar_header {
   padding: 20px;
   display: flex;
@@ -34,6 +36,7 @@
 .sidebar_logo {
   width: 35px;
   height: auto;
+  display: block;
 }
 
 .logo_text {
@@ -42,6 +45,7 @@
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
   white-space: nowrap;
 }
 
@@ -64,6 +68,7 @@
   color: #667eea;
 }
 
+/* Sidebar Navigation */
 .sidebar_nav {
   flex: 1;
   padding: 20px;
@@ -98,10 +103,16 @@
   color: white;
 }
 
+.nav_item svg {
+  font-size: 20px;
+  min-width: 20px;
+}
+
 .nav_item span {
   white-space: nowrap;
 }
 
+/* Sidebar Footer */
 .sidebar_footer {
   padding: 20px;
   border-top: 1px solid #e0e0e0;
@@ -116,6 +127,7 @@
   color: #e74c3c;
 }
 
+/* User Info */
 .user_info {
   display: flex;
   align-items: center;
@@ -137,6 +149,7 @@
   font-weight: 600;
   font-size: 14px;
   flex-shrink: 0;
+  text-transform: uppercase;
 }
 
 .user_details {
@@ -151,17 +164,19 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin: 0 0 2px 0;
 }
 
 .user_email {
-  font-size: 12px;
+  font-size: 11px;
   color: #999;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin: 0;
 }
 
-/* Sidebar closed state */
+/* Sidebar Closed State */
 .sidebar.closed .logo_text,
 .sidebar.closed .user_details,
 .sidebar.closed .nav_item span {
@@ -178,6 +193,10 @@
 }
 
 .sidebar.closed .sidebar_header {
+  justify-content: center;
+}
+
+.sidebar.closed .logo_area {
   justify-content: center;
 }
 

@@ -8,7 +8,8 @@ import {
   IoPersonOutline,
   IoLogOutOutline,
 } from "react-icons/io5";
-import "../Styles/Sidebar.css";
+import "./css/Sidebar.css";
+import { IoNotificationsOutline } from "react-icons/io5";
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
   const navigate = useNavigate();
@@ -46,12 +47,17 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
   const menuItems = [
     { path: "/dashboard", name: "Dashboard", icon: <IoStatsChartOutline /> },
     { path: "/dashboard/tasks", name: "My Tasks", icon: <IoListOutline /> },
+    { path: "/dashboard/profile", name: "Profile", icon: <IoPersonOutline /> },
+    {
+      path: "/dashboard/notifications",
+      name: "Notifications",
+      icon: <IoNotificationsOutline />,
+    },
     {
       path: "/dashboard/analytics",
       name: "Analytics",
       icon: <IoPieChartOutline />,
     },
-    { path: "/dashboard/profile", name: "Profile", icon: <IoPersonOutline /> },
   ];
 
   const handleLogout = () => {
