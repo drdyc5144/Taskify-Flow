@@ -17,7 +17,7 @@ const NotificationModal = ({ isOpen, onClose }) => {
   const [notifications, setNotifications] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const baseURL = import.meta.env.VITE_BASE_URL;
+  const baseURL = import.meta.env.TVITE_BASE_URL;
   const token = localStorage.getItem("Token");
 
   const fetchNotification = async () => {

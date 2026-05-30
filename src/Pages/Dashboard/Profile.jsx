@@ -12,7 +12,7 @@ const Profile = () => {
   const [isLoading, setIsLoading] = useState(true);
   console.log("api response", userData);
   const token = localStorage.getItem("Token");
-  const baseURL = import.meta.env.VITE_BASE_URL;
+  const baseURL = import.meta.env.TVITE_BASE_URL;
 
   const capitalizeWords = (str) => {
     if (!str) return "";

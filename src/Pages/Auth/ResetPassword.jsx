@@ -16,7 +16,7 @@ const ResetPassword = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const baseURL = import.meta.env.VITE_BASE_URL;
+  const baseURL = import.meta.env.TVITE_BASE_URL;
 
   const email =
     location.state?.email || localStorage.getItem("resetEmail") || "";
