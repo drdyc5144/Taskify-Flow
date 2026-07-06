@@ -10,7 +10,7 @@ const ForgotPassword = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
-  const baseURL = import.meta.env.TVITE_BASE_URL;
+  const baseURL = import.meta.env.VITE_TASKIFY_BASE_URL;
 
   const validateEmail = (email) => {
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/;

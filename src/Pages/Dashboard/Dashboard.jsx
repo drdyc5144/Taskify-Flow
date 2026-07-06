@@ -24,7 +24,7 @@ const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isFetching, setIsFetching] = useState(true);
   const token = localStorage.getItem("Token");
-  const baseURL = import.meta.env.TVITE_BASE_URL;
+  const baseURL = import.meta.env.VITE_TASKIFY_BASE_URL;
 
   const stats = {
     total: tasks.length,

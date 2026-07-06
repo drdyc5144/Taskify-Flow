@@ -25,7 +25,7 @@ const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const nav = useNavigate();
-  const baseURL = import.meta.env.TVITE_BASE_URL;
+  const baseURL = import.meta.env.VITE_TASKIFY_BASE_URL;
   // console.log(baseURL);
 
   const handleChange = (e) => {

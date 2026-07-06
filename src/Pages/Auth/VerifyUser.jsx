@@ -21,7 +21,7 @@ const VerifyUser = () => {
   const inputRefs = useRef([]);
   const nav = useNavigate();
 
-  const baseURL = import.meta.env.TVITE_BASE_URL;
+  const baseURL = import.meta.env.VITE_TASKIFY_BASE_URL;
   const savedEmail = JSON.parse(localStorage.getItem("userEmail")) || '""';
 
   // Auto-focus first input on mount
