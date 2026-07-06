@@ -10,6 +10,8 @@ import Dashboard from "../Dashboard/Dashboard";
 import Analytics from "../Dashboard/Analytics";
 import Profile from "../Dashboard/Profile";
 import Notifications from "../Dashboard/Notifications";
+import PrivateRoute from "../../Components/Private/PrivateRoute";
+import PublicRoute from "../../Components/Private/PublicRoute";
 
 export const Element = createBrowserRouter([
   {
@@ -18,42 +20,82 @@ export const Element = createBrowserRouter([
   },
   {
     path: "/",
-    element: <Login />,
+    element: (
+      <PublicRoute>
+        <Login />
+      </PublicRoute>
+    ),
   },
   {
     path: "/signup",
-    element: <SignUp />,
+    element: (
+      <PublicRoute>
+        <SignUp />
+      </PublicRoute>
+    ),
   },
   {
     path: "/verify-user",
-    element: <VerifyUser />,
+    element: (
+      <PublicRoute>
+        <VerifyUser />
+      </PublicRoute>
+    ),
   },
   {
     path: "/forgot-password",
-    element: <ForgotPassword />,
+    element: (
+      <PublicRoute>
+        <ForgotPassword />
+      </PublicRoute>
+    ),
   },
   {
     path: "/verify-forgot-otp",
-    element: <VerifyForgotOtp />,
+    element: (
+      <PublicRoute>
+        <VerifyForgotOtp />
+      </PublicRoute>
+    ),
   },
   {
     path: "/reset-password",
-    element: <ResetPassword />,
+    element: (
+      <PublicRoute>
+        <ResetPassword />
+      </PublicRoute>
+    ),
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
   },
   {
     path: "/dashboard/analytics",
-    element: <Analytics />,
+    element: (
+      <PrivateRoute>
+        <Analytics />
+      </PrivateRoute>
+    ),
   },
   {
     path: "/dashboard/profile",
-    element: <Profile />,
+    element: (
+      <PrivateRoute>
+        <Profile />
+      </PrivateRoute>
+    ),
   },
   {
     path: "/dashboard/notifications",
-    element: <Notifications />,
+    element: (
+      <PrivateRoute>
+        <Notifications />
+      </PrivateRoute>
+    ),
   },
 ]);
