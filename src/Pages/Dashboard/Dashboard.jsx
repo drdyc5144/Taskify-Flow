@@ -5,7 +5,6 @@ import {
   IoTimeOutline,
   IoAddOutline,
   IoCloseOutline,
-  IoCreateOutline,
   IoTrashOutline,
   IoCheckmarkOutline,
 } from "react-icons/io5";
@@ -205,11 +204,11 @@ const Dashboard = () => {
             </button>
           </div>
 
-          <div className="table_container">
+          <div className="table_wrapper">
             <table className="activity_table">
               <thead>
                 <tr>
-                  <th>TASK NAME</th>
+                  <th>TASK</th>
                   <th>STATUS</th>
                   <th>PRIORITY</th>
                   <th>DUE</th>
@@ -257,9 +256,6 @@ const Dashboard = () => {
                       </td>
                       <td>
                         <div className="action_buttons">
-                          <button className="edit_btn">
-                            <IoCreateOutline />
-                          </button>
                           <button
                             className="complete_btn"
                             onClick={() =>

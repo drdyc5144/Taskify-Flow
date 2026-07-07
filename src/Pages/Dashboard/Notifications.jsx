@@ -120,7 +120,8 @@ const Notifications = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      setNotifications(notifications.filter((item) => item._id !== id));
+
+      await fetchNotifications();
       toast.success(
         response.data.message || "Notification deleted successfully",
       );
@@ -141,8 +142,8 @@ const Notifications = () => {
           Authorization: `Bearer ${token}`,
         },
       });
+      await fetchNotifications();
       toast.success("All notifications deleted successfully");
-      setNotifications([]);
     } catch (error) {
       console.log(error);
       toast.error(
