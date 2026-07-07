@@ -90,11 +90,16 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
   };
 
   const handleConfirmLogout = () => {
+    localStorage.removeItem("Token");
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    localStorage.removeItem("userInfor");
+    localStorage.removeItem("userEmail");
     localStorage.removeItem("resetEmail");
+    localStorage.removeItem("tasks");
+    localStorage.removeItem("notification_count");
     setShowLogoutModal(false);
-    navigate("/");
+    navigate("/", { replace: true });
   };
 
   // Close sidebar when clicking outside on mobile
@@ -181,4 +186,3 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 };
 
 export default Sidebar;
- 
