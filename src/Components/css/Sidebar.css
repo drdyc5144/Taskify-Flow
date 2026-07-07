@@ -4,16 +4,28 @@
   top: 0;
   width: 260px;
   height: 100vh;
+  height: 100dvh;
   background: white;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
-  transition: width 0.3s ease;
-  z-index: 100;
+  transition:
+    width 0.3s ease,
+    transform 0.3s ease;
+  z-index: 1000;
 }
 
 .sidebar.closed {
   width: 70px;
+}
+.sidebar_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 999;
 }
 
 .sidebar_header {
@@ -23,6 +35,7 @@
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid #e0e0e0;
+  flex-shrink: 0;
 }
 
 .sidebar_header img {
@@ -44,6 +57,8 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  overflow-y: auto;
+  min-height: 0;
 }
 
 .nav_item {
@@ -60,12 +75,14 @@
   background: none;
   border: none;
   text-align: left;
+  flex-shrink: 0;
 }
 
 .nav_item svg {
   font-size: 20px;
   min-width: 20px;
   color: #667eea;
+  flex-shrink: 0;
 }
 
 .nav_item:hover {
@@ -90,18 +107,6 @@
   color: #ffffff !important;
 }
 
-.nav_item.active:hover {
-  color: #ffffff !important;
-}
-
-.nav_item.active:hover svg {
-  color: #ffffff !important;
-}
-
-.nav_item.active:hover span {
-  color: #ffffff !important;
-}
-
 .nav_item span {
   white-space: nowrap;
 }
@@ -111,16 +116,16 @@
   border-top: 1px solid #e0e0e0;
   display: flex;
   flex-direction: column;
-  gap: 8px; 
+  gap: 8px;
+  flex-shrink: 0;
 }
-
 
 .user_info {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding-bottom: 12px;  
-  border-bottom: 1px solid #e0e0e0;  
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .user_avatar {
@@ -162,10 +167,9 @@
   margin: 0;
 }
 
-
 .nav_item.logout {
-  margin: 0;  
-  padding: 10px 12px; 
+  margin: 0;
+  padding: 10px 12px;
 }
 
 .nav_item.logout:hover {
@@ -190,7 +194,7 @@
 
 .sidebar.closed .user_info {
   justify-content: center;
-  border-bottom: none; 
+  border-bottom: none;
 }
 
 .sidebar.closed .sidebar_header {
@@ -201,13 +205,144 @@
   justify-content: center;
 }
 
+.sidebar.closed .sidebar_footer {
+  padding: 20px 10px;
+}
 
+.sidebar.closed .nav_item.logout {
+  justify-content: center;
+  padding: 12px;
+}
+
+.sidebar.closed .nav_item.logout span {
+  display: none;
+}
+
+/* ========== MOBILE RESPONSIVE ========== */
 @media (max-width: 768px) {
   .sidebar {
     transform: translateX(-100%);
+    width: 280px;
+    height: 100dvh;
+    transition: transform 0.3s ease;
+    z-index: 1000;
   }
 
   .sidebar.open {
     transform: translateX(0);
+  }
+
+  .sidebar.closed {
+    width: 280px;
+    transform: translateX(-100%);
+  }
+
+  .sidebar.closed.open {
+    transform: translateX(0);
+  }
+
+  /* Show all content when sidebar is open on mobile */
+  .sidebar.open .user_details,
+  .sidebar.open .nav_item span {
+    display: block !important;
+  }
+
+  .sidebar.open .nav_item {
+    justify-content: flex-start;
+    padding: 12px;
+  }
+
+  .sidebar.open .user_info {
+    justify-content: flex-start;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .sidebar.open .sidebar_footer {
+    padding: 20px;
+  }
+
+  .sidebar.open .nav_item.logout span {
+    display: inline;
+  }
+
+  .sidebar.open .nav_item.logout {
+    justify-content: flex-start;
+    padding: 12px;
+  }
+
+  /* Prevent body scroll when sidebar is open */
+  body.sidebar-open {
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 260px;
+    height: 100dvh;
+  }
+
+  .sidebar.open {
+    width: 260px;
+  }
+
+  .sidebar.closed {
+    width: 260px;
+  }
+
+  .sidebar_header {
+    padding: 15px;
+    height: 56px;
+  }
+
+  .sidebar_header img {
+    width: 160px;
+    height: 50px;
+  }
+
+  .sidebar_nav {
+    padding: 15px;
+    gap: 4px;
+  }
+
+  .nav_item {
+    padding: 10px;
+    font-size: 14px;
+    gap: 10px;
+  }
+
+  .nav_item svg {
+    font-size: 18px;
+    min-width: 18px;
+  }
+
+  .sidebar_footer {
+    padding: 15px;
+  }
+
+  .user_info {
+    gap: 8px;
+    padding-bottom: 10px;
+  }
+
+  .user_avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  .user_name {
+    font-size: 13px;
+  }
+
+  .user_email {
+    font-size: 10px;
+  }
+}
+
+/* Fallback for older browsers */
+@supports not (height: 100dvh) {
+  .sidebar {
+    height: 100vh;
   }
 }

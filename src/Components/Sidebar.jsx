@@ -1,20 +1,29 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import {
   IoStatsChartOutline,
-  IoListOutline,
   IoPieChartOutline,
   IoPersonOutline,
   IoLogOutOutline,
+  IoNotificationsOutline,
 } from "react-icons/io5";
 import "./css/Sidebar.css";
-import { IoNotificationsOutline } from "react-icons/io5";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import LogoutModal from "./Modals/LogoutModal";
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const savedUser = JSON.parse(localStorage.getItem("user") || "{}");
 
@@ -28,18 +37,24 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 
   const getInitials = (fullName) => {
     if (!fullName) return "?";
-    const nameParts = fullName.trim().split(" ");
-    if (nameParts.length === 1) {
-      return nameParts[0].charAt(0).toUpperCase();
+    const parts = fullName.trim().split(" ");
+    if (parts.length === 1) {
+      return parts[0][0].toUpperCase();
     }
-    const firstNameInitial = nameParts[0].charAt(0);
-    const lastNameInitial = nameParts[nameParts.length - 1].charAt(0);
-    return (firstNameInitial + lastNameInitial).toUpperCase();
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
   };
 
   const menuItems = [
-    { path: "/dashboard", name: "Dashboard", icon: <IoStatsChartOutline /> },
-    { path: "/dashboard/profile", name: "Profile", icon: <IoPersonOutline /> },
+    {
+      path: "/dashboard",
+      name: "Dashboard",
+      icon: <IoStatsChartOutline />,
+    },
+    {
+      path: "/dashboard/profile",
+      name: "Profile",
+      icon: <IoPersonOutline />,
+    },
     {
       path: "/dashboard/notifications",
       name: "Notifications",
@@ -52,20 +67,62 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
     },
   ];
 
+  const handleNavigate = (path) => {
+    navigate(path);
+    // Close sidebar on mobile
+    if (isMobile) {
+      setIsOpen(false);
+    }
+  };
+
+  const isActive = (path) => {
+    if (path === "/dashboard") {
+      return location.pathname === "/dashboard";
+    }
+    return location.pathname.startsWith(path);
+  };
+
   const handleLogoutClick = () => {
+    if (isMobile) {
+      setIsOpen(false);
+    }
     setShowLogoutModal(true);
   };
 
   const handleConfirmLogout = () => {
-    localStorage.removeItem("Token");
+    localStorage.removeItem("token");
     localStorage.removeItem("user");
     localStorage.removeItem("resetEmail");
     setShowLogoutModal(false);
     navigate("/");
   };
 
+  // Close sidebar when clicking outside on mobile
+  const handleOverlayClick = () => {
+    if (isMobile && isOpen) {
+      setIsOpen(false);
+    }
+  };
+
+  // Close sidebar on escape key
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === "Escape" && isMobile && isOpen) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [isMobile, isOpen, setIsOpen]);
+
   return (
     <>
+      {/* Overlay for mobile */}
+      {isMobile && isOpen && (
+        <div className="sidebar_overlay" onClick={handleOverlayClick} />
+      )}
+
       <aside className={`sidebar ${isOpen ? "open" : "closed"}`}>
         <div className="sidebar_header">
           <div className="logo_area">
@@ -81,8 +138,8 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           {menuItems.map((item) => (
             <button
               key={item.path}
-              className={`nav_item ${location.pathname === item.path ? "active" : ""}`}
-              onClick={() => navigate(item.path)}
+              className={`nav_item ${isActive(item.path) ? "active" : ""}`}
+              onClick={() => handleNavigate(item.path)}
             >
               {item.icon}
               {isOpen && <span>{item.name}</span>}
@@ -124,3 +181,4 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 };
 
 export default Sidebar;
+ 
